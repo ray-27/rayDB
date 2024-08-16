@@ -1,25 +1,16 @@
 package main
 
 import (
-	"log"
-	"net/http"
-
-	"github.com/ray-27/rayDB.git/assets"
-	"github.com/ray-27/rayDB.git/server"
+	"github.com/ray-27/rayDB.git/services"
 )
 
-func handlers() {
-	http.HandleFunc("/", server.Home_Handler)
+type Db_data struct {
+	name string
+	num  int
 }
 
 func main() {
 
-	assets.RayDB_logo(7)
-	handlers()
+	services.Boot()
 
-	log.Println("Server started on http://localhost:8080")
-	err := http.ListenAndServe(":8080", nil)
-	if err != nil {
-		log.Fatal("Error starting server:", err)
-	}
 }
